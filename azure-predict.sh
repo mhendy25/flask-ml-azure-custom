@@ -1,16 +1,29 @@
 #!/usr/bin/env bash
 
-PORT=433
+PORT=443
 echo "Port: $PORT"
 
-# POST method predict with California Housing features
+# POST method predict
 curl -d '{
-   "MedInc": {"0": 8.3252},
-   "AveRooms": {"0": 6.984},
-   "AveBedrms": {"0": 1.023},
-   "Population": {"0": 322.0},
-   "AveOccup": {"0": 2.555},
-   "Latitude": {"0": 37.88}
+   "CHAS":{
+      "0":0
+   },
+   "RM":{
+      "0":6.575
+   },
+   "TAX":{
+      "0":296.0
+   },
+   "PTRATIO":{
+      "0":15.3
+   },
+   "B":{
+      "0":396.9
+   },
+   "LSTAT":{
+      "0":4.98
+   }
 }'\
      -H "Content-Type: application/json" \
-     -X POST https://my-flask-ml-service.azurewebsites.net:$PORT/predict
+     -X POST https://my-flask-ml-service.azurewebsites.net:$PORT/predict 
+     #your application name <yourappname>goes here
