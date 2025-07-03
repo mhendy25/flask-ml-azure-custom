@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Welcome to the Housing Price Prediction API"})
+    return jsonify({"message": "Welcome to the Housing Price Prediction API (Continous Delivery)"})
 
 @app.route('/predict', methods=['POST'])
 def predict():
