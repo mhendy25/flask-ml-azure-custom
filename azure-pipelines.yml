@@ -1,9 +1,9 @@
 trigger:
 - main
-
+# my YML file
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureServiceConnectionId: '$(azureServiceConnectionId)'
+  azureServiceConnectionId: '1acf9cd9-07d1-40b7-92b9-140ddf149978'
   
   # Web app name
   webAppName: 'modern-flask-ml-service'
@@ -78,6 +78,6 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              azureSubscription: $(azureServiceConnectionId)
+              azureSubscription: '1acf9cd9-07d1-40b7-92b9-140ddf149978'
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
