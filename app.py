@@ -9,13 +9,7 @@ app = Flask(__name__)
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
-# Load the model
-try:
-    model = joblib.load('housing_model.joblib')
-    logging.info("Model loaded successfully")
-except Exception as e:
-    logging.error(f"Error loading model: {e}")
-    model = None
+
 
 @app.route('/')
 def home():
@@ -39,6 +33,14 @@ def predict():
             float(data.get('Latitude', {}).get('0', 0))
         ]])
         logging.info(f"the extracted features are: {features}")
+        # Load the model
+        try:
+            model = joblib.load('housing_model.joblib')
+            logging.info("Model loaded successfully")
+        except Exception as e:
+            logging.error(f"Error loading model: {e}")
+            model = None
+            return jsonify({'error': str(e)}), 400
         # Make prediction
         prediction = model.predict(features)
         
